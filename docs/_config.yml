@@ -9,6 +9,9 @@ url: https://pl-vs-inspected-tgw.johna.kiwi
 baseurl: ""
 permalink: pretty
 
+# Shared johna.kiwi measurement ID (guides walkthrough smoke checks this).
+ga_tracking: G-6GP64SX615
+
 # ── Navigation ────────────────────────────────────────────────────────────────
 heading_anchors: true
 back_to_top: true
