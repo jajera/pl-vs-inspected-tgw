@@ -64,7 +64,6 @@ description: >-
   </div>
 </div>
 
-
 ## Accounts and profiles
 
 <div class="path-grid">
