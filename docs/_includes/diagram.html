@@ -1,0 +1,34 @@
+{% comment %}
+  Expandable architecture diagram (same pattern as private-s3-pkg-repo Diagram.astro).
+
+  Usage:
+    {% include diagram.html file="diagrams/two-paths.svg" alt="Two paths to one stream" %}
+{% endcomment %}
+{% assign alt = include.alt | default: "Architecture diagram" %}
+{% assign diagram_base = include.id | default: include.file %}
+{% assign diagram_id = diagram_base | slugify | prepend: "arch-diagram-" %}
+{% capture diagram_svg %}{% include {{ include.file }} %}{% endcapture %}
+<div class="arch-diagram">
+  <figure class="arch-diagram__figure">
+    <button
+      type="button"
+      class="arch-diagram__trigger"
+      aria-haspopup="dialog"
+      aria-controls="{{ diagram_id }}"
+      aria-label="Expand diagram: {{ alt | escape }}"
+    >
+      <div class="arch-diagram__frame">
+        {{ diagram_svg }}
+      </div>
+    </button>
+  </figure>
+
+  <dialog id="{{ diagram_id }}" class="arch-diagram__dialog">
+    <form method="dialog" class="arch-diagram__close-form">
+      <button type="submit" class="arch-diagram__close" aria-label="Close expanded diagram">Close</button>
+    </form>
+    <div class="arch-diagram__zoomed">
+      {{ diagram_svg }}
+    </div>
+  </dialog>
+</div>

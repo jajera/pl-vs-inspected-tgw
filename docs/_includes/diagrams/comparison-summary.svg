@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220" width="100%" role="img" aria-label="Summary metrics PrivateLink versus TGW">
+  <title>Lab summary — latency and rate</title>
+  <desc>Warm connect and 60s in-stream RTT p50 plus sustained rate for PrivateLink and TGW plus inspection.</desc>
+  <rect x="16" y="16" width="868" height="188" rx="12" class="diagram-cluster"/>
+  <text x="34" y="42" class="diagram-label" font-weight="600" font-size="13">Lab summary — same Region, same relay</text>
+  <text x="866" y="42" text-anchor="end" class="diagram-pill" font-size="10">ap-southeast-6 · warm + 60s series</text>
+
+  <!-- RTT p50 bars -->
+  <text x="48" y="78" class="diagram-muted" font-size="11">In-stream RTT p50</text>
+  <rect x="200" y="64" width="86" height="18" rx="4" class="diagram-account diagram-account--consumer"/>
+  <text x="210" y="77" class="diagram-text" font-size="11">0.43 ms  PL</text>
+  <rect x="200" y="90" width="213" height="18" rx="4" class="diagram-account diagram-account--provider"/>
+  <text x="210" y="103" class="diagram-text" font-size="11">1.07 ms  TGW  (~2.5×)</text>
+
+  <!-- nping -->
+  <text x="480" y="78" class="diagram-muted" font-size="11">nping TCP avg</text>
+  <rect x="600" y="64" width="99" height="18" rx="4" class="diagram-account diagram-account--consumer"/>
+  <text x="610" y="77" class="diagram-text" font-size="11">0.66 ms  PL</text>
+  <rect x="600" y="90" width="161" height="18" rx="4" class="diagram-account diagram-account--provider"/>
+  <text x="610" y="103" class="diagram-text" font-size="11">1.07 ms  TGW  (~1.6×)</text>
+
+  <!-- rate -->
+  <text x="48" y="148" class="diagram-muted" font-size="11">Sustained rate (60s)</text>
+  <rect x="200" y="134" width="275" height="18" rx="4" class="diagram-account diagram-account--consumer"/>
+  <text x="210" y="147" class="diagram-text" font-size="11">55.1 KiB/s  PrivateLink</text>
+  <rect x="200" y="160" width="276" height="18" rx="4" class="diagram-account diagram-account--provider"/>
+  <text x="210" y="173" class="diagram-text" font-size="11">55.1 KiB/s  TGW + inspection</text>
+
+  <text x="520" y="148" class="diagram-muted" font-size="11">Warm connect / first byte</text>
+  <text x="520" y="168" class="diagram-text" font-size="11">PL 2.7 / 3.4 ms · TGW 3.4 / 4.5 ms</text>
+  <text x="520" y="186" class="diagram-muted" font-size="10">Same order — path tax shows up in-stream, not only on handshake</text>
+</svg>

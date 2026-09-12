@@ -1,0 +1,42 @@
+{
+  "region": "ap-southeast-6",
+  "duration_s": 60,
+  "method": "parallel capture-series.py PING/PONG + nping TCP SYN",
+  "nping": {
+    "privatelink_avg_ms": 0.663,
+    "tgw_avg_ms": 1.074
+  },
+  "warm_sub_py": {
+    "privatelink": {
+      "connect_ms": 2.7,
+      "first_byte_ms": 3.4,
+      "rtt_p50_ms": 0.49,
+      "rate_kib_s": 51.5
+    },
+    "tgw": {
+      "connect_ms": 3.4,
+      "first_byte_ms": 4.5,
+      "rtt_p50_ms": 1.0,
+      "rate_kib_s": 52.3
+    }
+  },
+  "series_60s": {
+    "privatelink": {
+      "msgs": 2409,
+      "rate_kib_s": 55.08,
+      "rtt_p50_ms": 0.433,
+      "rtt_p95_ms": 0.707,
+      "rtt_p99_ms": 0.76,
+      "rtt_samples": 60
+    },
+    "tgw": {
+      "msgs": 2407,
+      "rate_kib_s": 55.11,
+      "rtt_p50_ms": 1.066,
+      "rtt_p95_ms": 1.308,
+      "rtt_p99_ms": 1.371,
+      "rtt_samples": 60
+    },
+    "rtt_ratio_p50": 2.46
+  }
+}

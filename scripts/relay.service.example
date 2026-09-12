@@ -1,0 +1,19 @@
+[Unit]
+Description=pl-vs-inspected-tgw stream relay (live Wikimedia)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=plvtgw
+Group=plvtgw
+WorkingDirectory=/opt/plvtgw
+ExecStart=/usr/bin/python3 /opt/plvtgw/relay.py
+Restart=on-failure
+RestartSec=3
+
+# Live ingest only — do not add --replay
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

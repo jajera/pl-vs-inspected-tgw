@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="PrivateLink vs inspected TGW — cross-account stream latency and cost">
+  <title>PrivateLink vs inspected TGW</title>
+  <defs>
+    <linearGradient id="topbar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="0.55" stop-color="#2dd4bf"/>
+      <stop offset="1" stop-color="#fbbf24"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0.12" cy="0.05" r="0.75">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.92" cy="0.95" r="0.7">
+      <stop offset="0" stop-color="#0e7490" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#0e7490" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16242a"/>
+      <stop offset="1" stop-color="#0d1518"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="630" fill="#0b1216"/>
+  <rect width="1200" height="630" fill="url(#glowA)"/>
+  <rect width="1200" height="630" fill="url(#glowB)"/>
+  <rect width="1200" height="8" fill="url(#topbar)"/>
+
+  <!-- mark -->
+  <g transform="translate(80 60) scale(0.1094)">
+    <rect width="512" height="512" rx="112" fill="url(#tile)"/>
+    <rect x="6" y="6" width="500" height="500" rx="106" fill="none" stroke="#2a3b42" stroke-width="12"/>
+    <line x1="120" y1="186" x2="392" y2="186" stroke="#2dd4bf" stroke-width="52" stroke-linecap="round"/>
+    <g stroke="#fbbf24" stroke-width="52" stroke-linecap="round">
+      <line x1="120" y1="326" x2="182" y2="326"/>
+      <line x1="330" y1="326" x2="392" y2="326"/>
+    </g>
+    <rect x="222" y="292" width="68" height="68" rx="10" fill="#fbbf24" transform="rotate(45 256 326)"/>
+  </g>
+
+  <!-- kicker + url -->
+  <text x="156" y="97" font-family="Noto Sans Mono, Liberation Mono, monospace" font-size="23"
+        letter-spacing="1.5" fill="#2dd4bf">jajera / pl-vs-inspected-tgw</text>
+  <text x="1120" y="97" text-anchor="end" font-family="Noto Sans Mono, Liberation Mono, monospace"
+        font-size="21" fill="#6f8a91">pl-vs-inspected-tgw.johna.kiwi</text>
+
+  <!-- title -->
+  <g font-family="Montserrat, Sora, Noto Sans, sans-serif" font-weight="700" font-size="86"
+     letter-spacing="-1.5" fill="#eef5f3">
+    <text x="80" y="230">PrivateLink vs</text>
+    <text x="80" y="322">inspected TGW</text>
+  </g>
+
+  <!-- lede -->
+  <text x="80" y="380" font-family="Noto Sans, sans-serif" font-size="29" fill="#a7bdb8">
+    Cross-account live stream: latency, cost, and when each path wins.
+  </text>
+
+  <!-- path band -->
+  <rect x="80" y="418" width="1040" height="148" rx="20" fill="#111d21" stroke="#24343a" stroke-width="2"/>
+
+  <!-- row 1: PrivateLink -->
+  <g>
+    <rect x="108" y="453" width="164" height="36" rx="10" fill="#2dd4bf" fill-opacity="0.16"/>
+    <text x="190" y="478" text-anchor="middle" font-family="Montserrat, Noto Sans, sans-serif"
+          font-weight="600" font-size="19" fill="#2dd4bf">PrivateLink</text>
+    <g stroke="#2dd4bf" stroke-width="6" stroke-linecap="round">
+      <line x1="316" y1="471" x2="612" y2="471"/>
+    </g>
+    <circle cx="308" cy="471" r="10" fill="#2dd4bf"/>
+    <circle cx="620" cy="471" r="10" fill="#2dd4bf"/>
+    <text x="656" y="478" font-family="Noto Sans, sans-serif" font-size="20" fill="#c5d4d0">
+      endpoint &#8594; NLB &#8594; relay
+    </text>
+  </g>
+
+  <!-- row 2: TGW + inspection -->
+  <g>
+    <rect x="108" y="513" width="164" height="36" rx="10" fill="#fbbf24" fill-opacity="0.16"/>
+    <text x="190" y="538" text-anchor="middle" font-family="Montserrat, Noto Sans, sans-serif"
+          font-weight="600" font-size="19" fill="#fbbf24">TGW hairpin</text>
+    <g stroke="#fbbf24" stroke-width="6" stroke-linecap="round">
+      <line x1="316" y1="531" x2="424" y2="531"/>
+      <line x1="504" y1="531" x2="612" y2="531"/>
+    </g>
+    <circle cx="308" cy="531" r="10" fill="#fbbf24"/>
+    <circle cx="620" cy="531" r="10" fill="#fbbf24"/>
+    <rect x="446" y="513" width="36" height="36" rx="6" fill="#fbbf24" transform="rotate(45 464 531)"/>
+    <text x="656" y="538" font-family="Noto Sans, sans-serif" font-size="20" fill="#c5d4d0">
+      TGW &#8594; firewall &#8594; TGW
+    </text>
+  </g>
+</svg>

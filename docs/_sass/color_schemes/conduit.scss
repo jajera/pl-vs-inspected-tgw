@@ -1,0 +1,25 @@
+// Custom light scheme for privatelink-conduit (based on just-the-docs light).
+// Avoids the default purple accent; teal + ink for a network/lab feel.
+
+$body-background-color: #f3f6f5;
+$sidebar-color: #e6eeec;
+$border-color: #c9d6d2;
+
+$body-text-color: #1a2b33;
+$body-heading-color: #0b1c24;
+$nav-child-link-color: #3d5560;
+
+$link-color: #0f766e;
+$btn-primary-color: #0f766e;
+$base-button-color: #d7e4e0;
+
+$code-background-color: #e8f0ee;
+$search-background-color: #ffffff;
+$table-background-color: #ffffff;
+
+$feedback-color: #dfe8e5;
+
+// Typography — not Inter / system UI defaults
+$body-font-family: "Source Sans 3", "Source Sans Pro", "Segoe UI", sans-serif;
+$mono-font-family: "IBM Plex Mono", "Consolas", "Liberation Mono", monospace;
+$heading-font-family: "Sora", "Source Sans 3", sans-serif;
