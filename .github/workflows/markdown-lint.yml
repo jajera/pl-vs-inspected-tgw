@@ -12,3 +12,23 @@ permissions:
 jobs:
   markdown-lint:
     uses: actionsforge/actions/.github/workflows/markdown-lint.yml@main
+    with:
+      # Kramdown attribute lists (`{: .class}`) must sit on the line after a
+      # closing fence, which conflicts with MD031. Alias for MD036 in the
+      # reusable default is misspelled (`no-emphasis-as-header`).
+      config: |
+        {
+          "default": true,
+          "line_length": false,
+          "ul-start-left": false,
+          "ul-indent": false,
+          "no-inline-html": false,
+          "no-bare-urls": false,
+          "fenced-code-language": false,
+          "first-line-h1": false,
+          "no-duplicate-heading": false,
+          "blanks-around-headings": false,
+          "blanks-around-fences": false,
+          "no-emphasis-as-heading": false,
+          "single-h1": false
+        }
