@@ -1,0 +1,113 @@
+{%- comment -%}
+  Site override of just-the-docs head.html (v0.12.0).
+
+  Writes the correct theme stylesheet (conduit / conduit-dark) before paint so
+  navigations do not flash just-the-docs-default.css, then reveal html after
+  that sheet is ready. Preference is auto | light | dark (3-mode toggle).
+{%- endcomment -%}
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <style>html{visibility:hidden}</style>
+  <script>
+  (function () {
+    var LIGHT = 'conduit';
+    var DARK = 'conduit-dark';
+    var KEY = 'plvt-docs-theme';
+    var BASE = '{{ "/assets/css/just-the-docs-" | relative_url }}';
+
+    function systemScheme() {
+      try {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? DARK : LIGHT;
+      } catch (e) {
+        return LIGHT;
+      }
+    }
+
+    function loadPref() {
+      try {
+        var stored = localStorage.getItem(KEY);
+        if (stored === 'light' || stored === LIGHT) return 'light';
+        if (stored === 'dark' || stored === DARK) return 'dark';
+      } catch (e) {}
+      return 'auto';
+    }
+
+    function resolve(pref) {
+      if (pref === 'light') return LIGHT;
+      if (pref === 'dark') return DARK;
+      return systemScheme();
+    }
+
+    var pref = loadPref();
+    var theme = resolve(pref);
+    document.documentElement.setAttribute('data-theme-pref', pref);
+
+    document.write('<link rel="stylesheet" href="' + BASE + theme + '.css">');
+    var other = theme === DARK ? LIGHT : DARK;
+    document.write('<link rel="preload" href="' + BASE + other + '.css" as="style">');
+    window.__plvtTheme = theme;
+    window.__plvtThemePref = pref;
+  })();
+  </script>
+
+  <link rel="stylesheet" href="{{ '/assets/css/just-the-docs-head-nav.css' | relative_url }}" id="jtd-head-nav-stylesheet">
+
+  <style id="jtd-nav-activation">
+  {% include css/activation.scss.liquid %}
+  </style>
+
+  {% if site.ga_tracking != nil %}
+    {% assign ga_tracking_ids = site.ga_tracking | split: "," %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_tracking_ids.first }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      {% for ga_property in ga_tracking_ids %}
+        gtag('config', '{{ ga_property }}'{% unless site.ga_tracking_anonymize_ip == nil %}, { 'anonymize_ip': true }{% endunless %});
+      {% endfor %}
+    </script>
+  {% endif %}
+
+  {% if site.search_enabled != false %}
+    <script src="{{ '/assets/js/vendor/lunr.min.js' | relative_url }}"></script>
+  {% endif %}
+
+  <script src="{{ '/assets/js/just-the-docs.js' | relative_url }}"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% include_cached favicon.html %}
+
+  {% seo %}
+
+  {% include head_custom.html %}
+
+  <script>
+  (function () {
+    var revealed = false;
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      document.documentElement.style.visibility = 'visible';
+    }
+    var link = document.querySelector('link[rel="stylesheet"][href*="just-the-docs-conduit"]');
+    if (!link) {
+      reveal();
+      return;
+    }
+    try {
+      if (link.sheet) {
+        reveal();
+        return;
+      }
+    } catch (e) {}
+    link.addEventListener('load', reveal);
+    link.addEventListener('error', reveal);
+    setTimeout(reveal, 2000);
+  })();
+  </script>
+</head>

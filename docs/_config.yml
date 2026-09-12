@@ -1,0 +1,97 @@
+title: PrivateLink vs inspected TGW
+description: >-
+  Compare PrivateLink and inspected Transit Gateway for cross-account stream
+  latency and cost. Demo harness is thin; the shared hub is a prerequisite.
+
+theme: just-the-docs
+
+url: https://pl-vs-inspected-tgw.johna.kiwi
+baseurl: ""
+permalink: pretty
+
+# ── Navigation ────────────────────────────────────────────────────────────────
+heading_anchors: true
+back_to_top: true
+back_to_top_text: "Back to top"
+
+aux_links:
+  GitHub: https://github.com/jajera/pl-vs-inspected-tgw
+aux_links_new_tab: true
+
+# ── Appearance ────────────────────────────────────────────────────────────────
+# Custom schemes: conduit (light) + conduit-dark (auto/light/dark toggle)
+# Built CSS: assets/css/just-the-docs-conduit{,-dark}.scss
+color_scheme: conduit
+
+favicon_ico: "/assets/images/favicon.ico"
+
+# ── Social card / icons ───────────────────────────────────────────────────────
+# Sources: assets/images/{icon,og-image}.svg — rebuild rasters with
+# scripts/build-brand.sh after editing either SVG.
+logo: "/assets/images/icon-512.png"
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      image:
+        path: "/assets/images/og-image.png"
+        width: 1200
+        height: 630
+        alt: >-
+          PrivateLink vs inspected TGW — direct PrivateLink path above,
+          TGW hairpin through Network Firewall below.
+
+# just-the-docs 0.12 still uses Sass @import / map-get / darken() internally.
+# Quiet that until the theme migrates to @use.
+sass:
+  quiet_deps: true
+  silence_deprecations:
+    - import
+    - global-builtin
+    - color-functions
+
+# ── Search ────────────────────────────────────────────────────────────────────
+search_enabled: true
+search:
+  heading_level: 3
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: false
+
+# ── Callouts ──────────────────────────────────────────────────────────────────
+callouts_level: loud
+callouts:
+  note:
+    title: Note
+    color: blue
+  tip:
+    title: Tip
+    color: purple
+  warning:
+    title: Warning
+    color: yellow
+  cost:
+    title: Cost
+    color: red
+  finding:
+    title: Finding
+    color: green
+
+# ── Footer ────────────────────────────────────────────────────────────────────
+footer_content: >-
+  <a href="https://github.com/jajera/pl-vs-inspected-tgw">jajera/pl-vs-inspected-tgw</a>.
+  AWS pricing and behaviour change — verify against current AWS documentation.
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-include-cache
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - docker-compose.yml
+  - vendor

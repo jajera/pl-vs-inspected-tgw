@@ -1,0 +1,846 @@
+// Site-specific styles on top of just-the-docs (light + dark via $color_scheme).
+// Visual system matches privatelink-conduit; theme toggle is auto/light/dark.
+
+$conduit-is-dark: false;
+@if variable-exists(color-scheme) {
+  @if $color-scheme == dark {
+    $conduit-is-dark: true !global;
+  }
+}
+
+:root {
+  @if $conduit-is-dark {
+    --conduit-ink: #eef5f3;
+    --conduit-muted: #9fb0b6;
+    --conduit-accent: #2dd4bf;
+    --conduit-accent-soft: rgba(45, 212, 191, 0.16);
+    --conduit-warn: #fbbf24;
+    --conduit-warn-soft: rgba(251, 191, 36, 0.16);
+    --conduit-surface: #162126;
+    --conduit-glow: rgba(45, 212, 191, 0.14);
+    --conduit-border: #2a3b42;
+    --conduit-bg: #0f171a;
+    --conduit-sidebar: #121c20;
+    --conduit-sidebar-end: #0f171a;
+    --conduit-table-head: #1a282e;
+    --conduit-meta: #7f939b;
+    --conduit-ghost-bg: rgba(22, 33, 38, 0.85);
+    --conduit-hero-bg: linear-gradient(135deg, rgba(22, 33, 38, 0.95), rgba(15, 23, 26, 0.92)),
+      linear-gradient(120deg, #0f766e 0%, #0e7490 100%);
+    --conduit-page-glow-a: rgba(45, 212, 191, 0.08);
+    --conduit-page-glow-b: rgba(14, 116, 144, 0.1);
+    --conduit-card-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+    --conduit-btn-text: #042f2e;
+    // Diagram tokens — readable on dark without washing the panel
+    --diagram-panel: #1a282e;
+    --diagram-panel-stroke: #3d5560;
+    --diagram-consumer-fill: rgba(45, 212, 191, 0.18);
+    --diagram-consumer-stroke: #5eead4;
+    --diagram-provider-fill: rgba(251, 146, 60, 0.16);
+    --diagram-provider-stroke: #fb923c;
+    --diagram-hub-fill: rgba(167, 139, 250, 0.16);
+    --diagram-hub-stroke: #c4b5fd;
+    --diagram-vpc-fill: rgba(196, 181, 253, 0.06);
+    --diagram-vpc-stroke: #a78bfa;
+    --diagram-label: #eef5f3;
+    --diagram-muted: #b8c9c4;
+    --diagram-path-b: #fbbf24;
+  } @else {
+    --conduit-ink: #0b1c24;
+    --conduit-muted: #3d5560;
+    --conduit-accent: #0f766e;
+    --conduit-accent-soft: #d8ebe7;
+    --conduit-warn: #b45309;
+    --conduit-warn-soft: #ffedd5;
+    --conduit-surface: #ffffff;
+    --conduit-glow: rgba(15, 118, 110, 0.12);
+    --conduit-border: #c9d6d2;
+    --conduit-bg: #f3f6f5;
+    --conduit-sidebar: #e6eeec;
+    --conduit-sidebar-end: #dfeae7;
+    --conduit-table-head: #e8f0ee;
+    --conduit-meta: #5b7380;
+    --conduit-ghost-bg: rgba(255, 255, 255, 0.75);
+    --conduit-hero-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(232, 240, 238, 0.9)),
+      linear-gradient(120deg, #0f766e 0%, #0e7490 100%);
+    --conduit-page-glow-a: rgba(15, 118, 110, 0.1);
+    --conduit-page-glow-b: rgba(14, 116, 144, 0.08);
+    --conduit-card-shadow: 0 10px 28px rgba(11, 28, 36, 0.05);
+    --conduit-btn-text: #f5fffd;
+    --diagram-panel: #f7faf9;
+    --diagram-panel-stroke: #c9d6d2;
+    --diagram-consumer-fill: #d8ebe7;
+    --diagram-consumer-stroke: #0f766e;
+    --diagram-provider-fill: rgba(237, 113, 0, 0.12);
+    --diagram-provider-stroke: #ed7100;
+    --diagram-hub-fill: rgba(140, 79, 255, 0.1);
+    --diagram-hub-stroke: #8c4fff;
+    --diagram-vpc-fill: rgba(140, 79, 255, 0.04);
+    --diagram-vpc-stroke: #8c4fff;
+    --diagram-label: #0b1c24;
+    --diagram-muted: #2a3f48;
+    --diagram-path-b: #b45309;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(1200px 500px at 10% -10%, var(--conduit-page-glow-a), transparent 55%),
+    radial-gradient(900px 400px at 100% 0%, var(--conduit-page-glow-b), transparent 50%),
+    var(--conduit-bg);
+}
+
+.side-bar {
+  background: linear-gradient(180deg, var(--conduit-sidebar) 0%, var(--conduit-sidebar-end) 100%);
+  border-right: 1px solid var(--conduit-border);
+}
+
+.site-title {
+  font-family: "Sora", "Source Sans 3", sans-serif !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.02em;
+}
+
+.main-content {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Sora", "Source Sans 3", sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  a {
+    text-underline-offset: 0.15em;
+  }
+
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 1px solid var(--conduit-border);
+    border-radius: 12px;
+    background: var(--conduit-surface);
+    box-shadow: 0 1px 0 rgba(11, 28, 36, 0.04);
+
+    th {
+      background: var(--conduit-table-head);
+      font-family: "Sora", "Source Sans 3", sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.01em;
+    }
+
+    td,
+    th {
+      border-color: var(--conduit-border) !important;
+    }
+  }
+
+  .highlight,
+  pre.highlight {
+    border-radius: 10px;
+    border: 1px solid var(--conduit-border);
+  }
+}
+
+// ── Walkthrough code blocks ───────────────────────────────────────────────────
+// By default a command and the output you should see look identical, which makes
+// a long walkthrough hard to follow. Every fenced block gets a header label:
+//   ```bash          -> "run" (on your laptop)
+//   {: .on-host }    -> "run on the host" (inside the SSM session)
+//   {: .output }     -> "expected output" on a quieter, non-actionable surface
+//   {: .formula }    -> "formula" (not something to paste anywhere)
+// Fixed strip height so the label text and the injected copy button share one
+// centre line.
+$code-label-height: 1.75rem;
+
+.main-content div.language-bash,
+.main-content div.language-sh,
+.main-content div.language-console,
+.main-content div.output,
+.main-content div.formula {
+  border: 1px solid var(--conduit-border);
+  border-radius: 10px;
+  overflow: hidden;
+
+  > div.highlight {
+    border: 0;
+    border-radius: 0;
+  }
+
+  &::before {
+    display: flex;
+    align-items: center;
+    height: $code-label-height;
+    padding: 0 0.75rem;
+    border-bottom: 1px solid var(--conduit-border);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  // just-the-docs injects the copy button at top/right with padding sized for a
+  // block that has no header, which leaves it sitting low against the label.
+  // Match the strip height and centre it instead.
+  > button {
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: auto;
+    height: $code-label-height;
+    padding: 0 0.7rem;
+
+    // The theme leaves the icon unsized and lets it fill a fixed-width button;
+    // inside a flex button that collapses to zero, so size it here.
+    svg {
+      flex: none;
+      width: 0.8rem;
+      height: 0.8rem;
+    }
+  }
+}
+
+// Commands: accent header, code-tinted body - this is what you paste
+.main-content div.language-bash::before,
+.main-content div.language-sh::before,
+.main-content div.language-console::before {
+  content: "run";
+  color: var(--conduit-accent);
+  background: var(--conduit-accent-soft);
+}
+
+// Same, but the shell is on the EC2 host rather than your laptop
+.main-content div.on-host::before {
+  content: "run on the host";
+}
+
+// Results and reference blocks: quieter surface, nothing to paste
+.main-content div.output::before {
+  content: "expected output";
+}
+
+.main-content div.formula::before {
+  content: "formula";
+}
+
+.main-content div.output,
+.main-content div.formula {
+  background: var(--conduit-surface);
+
+  &::before {
+    color: var(--conduit-meta);
+    background: var(--conduit-table-head);
+  }
+
+  > div.highlight,
+  pre.highlight,
+  code {
+    background: var(--conduit-surface);
+    color: var(--conduit-muted);
+  }
+
+  // Results are for reading, not pasting - wrap long lines instead of hiding
+  // them behind a horizontal scrollbar.
+  pre.highlight {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  // ...and no copy button, for the same reason.
+  > button {
+    display: none;
+  }
+}
+
+.main-content .warning,
+.main-content .note,
+.main-content .tip,
+.main-content .finding,
+.main-content .blocked,
+.main-content .cost {
+  border-radius: 12px;
+  border-width: 1px;
+  box-shadow: 0 8px 24px rgba(11, 28, 36, 0.04);
+}
+
+.conduit-hero {
+  position: relative;
+  margin: 0 0 2rem;
+  padding: 1.75rem 1.75rem 1.5rem;
+  border-radius: 18px;
+  background: var(--conduit-hero-bg);
+  background-blend-mode: normal, soft-light;
+  border: 1px solid var(--conduit-border);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 18px 40px var(--conduit-glow);
+  overflow: hidden;
+}
+
+.conduit-hero::after {
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--conduit-glow), transparent 70%);
+  pointer-events: none;
+}
+
+.conduit-kicker {
+  margin: 0 0 0.6rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--conduit-accent);
+}
+
+.conduit-hero h1 {
+  margin-top: 0 !important;
+  margin-bottom: 0.65rem;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.15;
+  color: var(--conduit-ink);
+}
+
+.conduit-lede {
+  margin: 0;
+  max-width: 42rem;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--conduit-muted);
+}
+
+.conduit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.conduit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  font-family: "Sora", "Source Sans 3", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.conduit-btn:hover {
+  transform: translateY(-1px);
+}
+
+.conduit-btn--primary {
+  background: var(--conduit-accent);
+  color: var(--conduit-btn-text) !important;
+  box-shadow: 0 8px 20px var(--conduit-glow);
+}
+
+.conduit-btn--primary:hover {
+  filter: brightness(1.08);
+  color: var(--conduit-btn-text) !important;
+}
+
+.conduit-btn--ghost {
+  background: var(--conduit-ghost-bg);
+  color: var(--conduit-ink) !important;
+  border-color: var(--conduit-border);
+}
+
+.conduit-btn--ghost:hover {
+  background: var(--conduit-surface);
+}
+
+.path-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.path-card {
+  display: block;
+  padding: 1.1rem 1.15rem 1.15rem;
+  border-radius: 14px;
+  background: var(--conduit-surface);
+  border: 1px solid var(--conduit-border);
+  text-decoration: none !important;
+  color: inherit !important;
+  box-shadow: var(--conduit-card-shadow);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.path-card:hover {
+  border-color: var(--conduit-accent);
+  box-shadow: 0 14px 32px var(--conduit-glow);
+  transform: translateY(-2px);
+}
+
+.path-card__label {
+  display: inline-block;
+  margin-bottom: 0.45rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: var(--conduit-accent-soft);
+  color: var(--conduit-accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.path-card__label--warn {
+  background: var(--conduit-warn-soft);
+  color: var(--conduit-warn);
+}
+
+.path-card strong {
+  display: block;
+  font-family: "Sora", "Source Sans 3", sans-serif;
+  font-size: 1.05rem;
+  color: var(--conduit-ink);
+  margin-bottom: 0.35rem;
+}
+
+.path-card p {
+  margin: 0;
+  color: var(--conduit-muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.path-card__meta {
+  display: block;
+  margin-top: 0.7rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--conduit-meta);
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.nav-card {
+  display: block;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: var(--conduit-ghost-bg);
+  border: 1px solid var(--conduit-border);
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-card:hover {
+  background: var(--conduit-surface);
+  border-color: var(--conduit-accent);
+}
+
+.nav-card strong {
+  display: block;
+  font-family: "Sora", "Source Sans 3", sans-serif;
+  margin-bottom: 0.25rem;
+  color: var(--conduit-ink);
+}
+
+.nav-card span {
+  color: var(--conduit-muted);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.diagram {
+  margin: 1.25rem 0;
+  padding: 1rem;
+  border-radius: 14px;
+  background: var(--conduit-surface);
+  border: 1px solid var(--conduit-border);
+  overflow-x: auto;
+}
+
+.diagram svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  font-family: "Sora", "Source Sans 3", sans-serif;
+}
+
+// Click-to-expand diagrams (private-s3-pkg-repo pattern)
+.arch-diagram {
+  margin: 1.25rem 0;
+  max-width: 100%;
+}
+
+.arch-diagram__figure {
+  margin: 0;
+  padding: 1rem;
+  border-radius: 14px;
+  background: var(--diagram-panel);
+  border: 1px solid var(--diagram-panel-stroke);
+}
+
+.arch-diagram__trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: zoom-in;
+  border-radius: 10px;
+  line-height: 0;
+  text-align: left;
+  color: inherit;
+}
+
+.arch-diagram__trigger:hover {
+  box-shadow: 0 0 0 1px var(--conduit-accent-soft);
+}
+
+.arch-diagram__trigger:focus-visible {
+  outline: 2px solid var(--conduit-accent);
+  outline-offset: 3px;
+}
+
+.arch-diagram__frame svg,
+.arch-diagram__zoomed svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-family: "Sora", "Source Sans 3", sans-serif;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+.arch-diagram__dialog {
+  width: fit-content;
+  max-width: min(96vw, 1200px);
+  max-height: 96vh;
+  margin: auto;
+  padding: 1rem;
+  border: none;
+  border-radius: 14px;
+  background: var(--diagram-panel);
+  color: var(--conduit-ink);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+}
+
+.arch-diagram__dialog::backdrop {
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.arch-diagram__close-form {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 0.5rem;
+}
+
+.arch-diagram__close {
+  cursor: pointer;
+  border: 1px solid var(--conduit-border);
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  background: var(--conduit-ghost-bg);
+  color: var(--conduit-ink);
+  font: inherit;
+  font-size: 0.875rem;
+}
+
+.arch-diagram__close:hover {
+  border-color: var(--conduit-accent);
+  background: var(--conduit-accent-soft);
+}
+
+.arch-diagram__zoomed {
+  width: auto;
+  max-width: min(96vw - 2rem, 1200px);
+  max-height: calc(96vh - 3.5rem);
+  overflow: auto;
+}
+
+.arch-diagram__zoomed svg {
+  width: min(96vw - 2rem, 1200px);
+  max-height: calc(96vh - 3.5rem);
+}
+
+.diagram-node {
+  fill: var(--conduit-accent-soft);
+  stroke: var(--conduit-accent);
+  stroke-width: 1.5;
+}
+
+.diagram-accent {
+  fill: var(--conduit-table-head);
+  stroke: var(--conduit-accent);
+  stroke-width: 1.75;
+}
+
+.diagram-cluster {
+  fill: var(--diagram-panel);
+  stroke: var(--diagram-panel-stroke);
+  stroke-width: 1.5;
+}
+
+.diagram-account {
+  fill: var(--conduit-surface);
+  stroke-width: 1.75;
+}
+
+.diagram-account--consumer {
+  stroke: var(--diagram-consumer-stroke);
+  fill: var(--diagram-consumer-fill);
+}
+
+.diagram-account--provider {
+  stroke: var(--diagram-provider-stroke);
+  fill: var(--diagram-provider-fill);
+}
+
+.diagram-account--hub {
+  stroke: var(--diagram-hub-stroke);
+  fill: var(--diagram-hub-fill);
+}
+
+.diagram-sg-ring {
+  fill: none;
+  stroke: var(--diagram-provider-stroke);
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+
+// Mono labels: site only loads IBM Plex Mono 400/500 — heavier weights fake-bold and blur.
+.diagram-account-label {
+  fill: var(--diagram-label);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.diagram-vpc {
+  fill: var(--diagram-vpc-fill);
+  stroke: var(--diagram-vpc-stroke);
+  stroke-width: 1.25;
+  opacity: 1;
+}
+
+.diagram-vpc-label {
+  fill: var(--diagram-muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-weight: 500;
+}
+
+.diagram-pill {
+  fill: var(--diagram-muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-weight: 500;
+}
+
+.diagram-text,
+.diagram-label {
+  fill: var(--diagram-label);
+  font-family: "Sora", "Source Sans 3", sans-serif;
+  font-weight: 600;
+}
+
+.diagram-muted,
+.diagram-edge-text {
+  fill: var(--diagram-muted);
+  font-family: "Sora", "Source Sans 3", sans-serif;
+  font-weight: 500;
+}
+
+.diagram-line {
+  stroke: var(--diagram-muted);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.diagram-line--a {
+  stroke: var(--diagram-consumer-stroke);
+  stroke-width: 1.75;
+}
+
+.diagram-line--b {
+  stroke: var(--diagram-path-b);
+  stroke-width: 1.75;
+}
+
+.diagram-line--dashed {
+  stroke-dasharray: 5 4;
+}
+
+.diagram-arrow-head {
+  fill: var(--diagram-muted);
+}
+
+.diagram-arrow-head--a {
+  fill: var(--diagram-consumer-stroke);
+}
+
+.diagram-arrow-head--b {
+  fill: var(--diagram-path-b);
+}
+
+// AWS general-resource icons ship a light-background and a dark-background
+// variant; show whichever matches the active scheme.
+@if $conduit-is-dark {
+  .diagram-on-light {
+    display: none;
+  }
+} @else {
+  .diagram-on-dark {
+    display: none;
+  }
+}
+
+.diagram-edge-bg {
+  fill: var(--diagram-panel);
+  stroke: var(--diagram-panel-stroke);
+  stroke-width: 1;
+}
+
+.diagram-caption {
+  margin: 0.35rem 0 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--diagram-muted);
+}
+
+.conduit-nav-foot {
+  margin: 0;
+  padding: 1rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--conduit-meta);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Theme toggle — circular chip; 3-mode icons via data-theme-pref
+.aux-nav .aux-nav-list-item:has(.conduit-theme-toggle) {
+  display: flex;
+  align-items: center;
+}
+
+.aux-nav .conduit-theme-toggle.site-button {
+  height: auto;
+  margin: 0;
+  padding: 0 0.65rem;
+  border: 0;
+  cursor: pointer;
+  color: var(--conduit-ink);
+  font: inherit;
+  background: transparent !important;
+  background-image: none !important;
+}
+
+.aux-nav .conduit-theme-toggle.site-button:hover,
+.aux-nav .conduit-theme-toggle.site-button:focus,
+.aux-nav .conduit-theme-toggle.site-button:focus-visible {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+.aux-nav .conduit-theme-toggle .conduit-theme-toggle__chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  border: 1px solid var(--conduit-border);
+  background: var(--conduit-surface);
+  box-shadow: 0 1px 2px rgba(11, 28, 36, 0.06);
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.aux-nav .conduit-theme-toggle:hover .conduit-theme-toggle__chip {
+  border-color: var(--conduit-accent);
+  background: var(--conduit-accent-soft);
+  box-shadow: 0 2px 8px var(--conduit-glow);
+}
+
+.aux-nav .conduit-theme-toggle:focus-visible .conduit-theme-toggle__chip {
+  border-color: var(--conduit-accent);
+  box-shadow: 0 0 0 3px var(--conduit-accent-soft);
+}
+
+.conduit-theme-toggle .theme-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  display: none;
+  flex-shrink: 0;
+}
+
+.conduit-theme-toggle .theme-icon-auto,
+.conduit-theme-toggle .theme-icon-light {
+  fill: none;
+  stroke: currentColor;
+}
+
+.conduit-theme-toggle .theme-icon-dark {
+  fill: currentColor;
+  stroke: none;
+}
+
+html[data-theme-pref="auto"] .conduit-theme-toggle .theme-icon-auto,
+html:not([data-theme-pref]) .conduit-theme-toggle .theme-icon-auto {
+  display: block;
+}
+
+html[data-theme-pref="light"] .conduit-theme-toggle .theme-icon-light {
+  display: block;
+}
+
+html[data-theme-pref="dark"] .conduit-theme-toggle .theme-icon-dark {
+  display: block;
+}
+
+@if $conduit-is-dark {
+  .aux-nav .conduit-theme-toggle .conduit-theme-toggle__chip {
+    background: var(--conduit-surface);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@media (max-width: 799px) {
+  .conduit-hero {
+    padding: 1.25rem;
+  }
+}

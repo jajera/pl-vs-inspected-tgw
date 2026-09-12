@@ -1,0 +1,30 @@
+// Dark variant of conduit — teal accents.
+// Intentionally does NOT @import just-the-docs dark.scss (that file uses
+// deprecated lighten/darken). Mirror the vars we need and pull the dark
+// syntax theme only.
+$color-scheme: dark;
+
+$link-color: #2dd4bf;
+$btn-primary-color: #14b8a6;
+$base-button-color: #24343a;
+
+$body-background-color: #0f171a;
+$sidebar-color: #121c20;
+$border-color: #2a3b42;
+
+$body-text-color: #c5d4d0;
+$body-heading-color: #eef5f3;
+$nav-child-link-color: #9fb0b6;
+
+$code-background-color: #0a1215;
+$code-linenumber-color: #e6edf3;
+$search-background-color: #182428;
+$search-result-preview-color: #c5d4d0;
+$table-background-color: #162126;
+$feedback-color: #182428;
+
+$body-font-family: "Source Sans 3", "Source Sans Pro", "Segoe UI", sans-serif;
+$mono-font-family: "IBM Plex Mono", "Consolas", "Liberation Mono", monospace;
+$heading-font-family: "Sora", "Source Sans 3", sans-serif;
+
+@import "./vendor/accessible-pygments/github-dark";
